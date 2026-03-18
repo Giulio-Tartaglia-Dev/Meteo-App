@@ -1,8 +1,8 @@
-// Weather API Configuration
+
 const API_KEY = "75df1ac3aef349dabd5163456261202";
 const API_BASE_URL = "http://api.weatherapi.com/v1/forecast.json";
 
-// DOM Elements
+
 const cityInput = document.getElementById('cityInput');
 const searchBtn = document.querySelector('.search-btn');
 const btnText = document.querySelector('.btn-text');
@@ -14,14 +14,14 @@ const currentDate = document.getElementById('currentDate');
 const forecastCards = document.getElementById('forecastCards');
 const hourlyForecast = document.getElementById('hourlyForecast');
 
-// Event Listeners
+
 cityInput.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         getWeather();
     }
 });
 
-// Main function to get weather data
+
 async function getWeather() {
     const city = cityInput.value.trim();
     
@@ -44,7 +44,7 @@ async function getWeather() {
     }
 }
 
-// Fetch weather data from API
+
 async function fetchWeatherData(city) {
     const url = `${API_BASE_URL}?key=${API_KEY}&q=${encodeURIComponent(city)}&days=5&aqi=no&alerts=no`;
     
@@ -63,12 +63,12 @@ async function fetchWeatherData(city) {
     return data;
 }
 
-// Display weather data on the page
+
 function displayWeatherData(data) {
     const location = data.location;
     const forecast = data.forecast.forecastday;
     
-    // Update location header
+  
     locationName.textContent = `${location.name}, ${location.country}`;
     currentDate.textContent = new Date().toLocaleDateString('en-US', { 
         weekday: 'long', 
@@ -77,17 +77,17 @@ function displayWeatherData(data) {
         day: 'numeric' 
     });
     
-    // Display forecast cards
+   
     displayForecastCards(forecast);
     
-    // Display hourly forecast for today
+    
     displayHourlyForecast(forecast[0].hour);
     
-    // Show results
+    
     showResults();
 }
 
-// Display forecast cards
+
 function displayForecastCards(forecast) {
     forecastCards.innerHTML = '';
     
@@ -97,7 +97,7 @@ function displayForecastCards(forecast) {
     });
 }
 
-// Create a forecast card element
+
 function createForecastCard(day, isToday) {
     const card = document.createElement('div');
     card.className = 'forecast-card';
@@ -138,11 +138,11 @@ function createForecastCard(day, isToday) {
     return card;
 }
 
-// Display hourly forecast
+
 function displayHourlyForecast(hours) {
     hourlyForecast.innerHTML = '';
     
-    // Show next 8 hours
+    
     const nextHours = hours.slice(0, 8);
     
     nextHours.forEach(hour => {
@@ -151,7 +151,7 @@ function displayHourlyForecast(hours) {
     });
 }
 
-// Create an hourly forecast item
+
 function createHourlyItem(hour) {
     const item = document.createElement('div');
     item.className = 'hourly-item';
@@ -170,7 +170,7 @@ function createHourlyItem(hour) {
     return item;
 }
 
-// Get clothing suggestion based on temperature
+
 function getClothingSuggestion(temperature) {
     if (temperature < -10) {
         return "[VERY COLD] Extremely cold! Wear heavy winter coat, thermal underwear, warm boots, gloves, scarf, and hat.";
@@ -191,7 +191,7 @@ function getClothingSuggestion(temperature) {
     }
 }
 
-// UI Helper Functions
+
 function setLoading(isLoading) {
     searchBtn.disabled = isLoading;
     btnText.style.display = isLoading ? 'none' : 'inline';
@@ -215,12 +215,12 @@ function hideResults() {
     weatherResults.style.display = 'none';
 }
 
-// Initialize the app
+
 document.addEventListener('DOMContentLoaded', () => {
-    // Focus on the input field
+
     cityInput.focus();
     
-    // Add some sample cities for quick testing
+  
     const sampleCities = ['London', 'New York', 'Tokyo', 'Paris', 'Sydney'];
     cityInput.placeholder = `Enter city name... (e.g., ${sampleCities[Math.floor(Math.random() * sampleCities.length)]})`;
 });
