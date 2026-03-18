@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Dress Advisor - Web GUI</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>🌤️ Weather Dress Advisor</h1>
+            <p>Get weather-based clothing recommendations for any city</p>
+        </header>
+
+        <main class="main-content">
+            <section class="search-section">
+                <div class="search-container">
+                    <input 
+                        type="text" 
+                        id="cityInput" 
+                        placeholder="Enter city name..." 
+                        class="city-input"
+                    />
+                    <button onclick="getWeather()" class="search-btn">
+                        <span class="btn-text">Get Weather</span>
+                        <span class="btn-loading" style="display: none;">Loading...</span>
+                    </button>
+                </div>
+                <div id="errorMessage" class="error-message" style="display: none;"></div>
+            </section>
+
+            <section id="weatherResults" class="weather-results" style="display: none;">
+                <div class="location-header">
+                    <h2 id="locationName"></h2>
+                    <p id="currentDate"></p>
+                </div>
+
+                <div class="forecast-container">
+                    <div id="forecastCards" class="forecast-cards"></div>
+                </div>
+
+                <div class="hourly-section">
+                    <h3>Today's Hourly Forecast</h3>
+                    <div id="hourlyForecast" class="hourly-forecast"></div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>Powered by WeatherAPI.com | Made with ❤️</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
